@@ -18,6 +18,7 @@ import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private CursorAdapter adapter;
     private Cursor cursor;
     private EditText number;
-    private AutoCompleteTextView autoCompleteTextView;
+    private TextView autoCompleteTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         registerForContextMenu(listView);
 
-        autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.et_name);
-        autoCompleteTextView.setAdapter(adapter);
+        autoCompleteTextView = (TextView) findViewById(R.id.et_name);
         autoCompleteTextView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
 
         number = (EditText) findViewById(R.id.et_number);
         number.addTextChangedListener(new TextWatcher() {
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 , PhoneBookColumns.CONTACT_NAME_COLUMN
                 , PhoneBookColumns.CONTACT_NUMBER_COLUMN }
                 , new int[]{R.id.item_id, R.id.item_name, R.id.item_number}
-                , CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+                , CursorAdapter.NO_SELECTION);
     }
 
     @Override
